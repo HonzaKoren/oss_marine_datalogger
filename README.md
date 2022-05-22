@@ -8,9 +8,11 @@ Let's create a set of hardware and software, so you can log your sailing trips u
 - [Wind speed and direction sensor](wind_measurement.md)
 - [Microcontroller Zero W](microcontroller.md)
 - Any power bank with USB port to power up whole solution
-- GPS/Galileo/Glonas receiver
+- GPS/Galileo/GLONASS receiver
 - Accelerometer (for anchor alarm and yacht waving compensations)
 - Barometer (for weather alarms)
+
+[Bill of material](bom.md)
 
 # Features
 - Web interface to be used for visualisations
