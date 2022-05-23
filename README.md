@@ -4,6 +4,9 @@ OSS datalogger for any sailing fan including support of set of gadgets to get re
 # Aim
 Let's create a set of hardware and software, so you can log your sailing trips under the open data and with as much detail as suits you.
 
+# External guides and inspirations
+[See more](external_links.md)
+
 # Expected hardware
 - [Wind speed and direction sensor](wind_measurement.md)
 - [Microcontroller Zero W](microcontroller.md)
