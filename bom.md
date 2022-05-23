@@ -6,6 +6,7 @@
 1. BT connectivity for RPi 2 B (Zero 2 W has BTLE built in): Any microdongle ATM I'll use Cambridge Silicon Radio (USB ID 0a12:0001)
 1. Wind measurement - two options:
    1. Wireless over BT [Ultrasonic Portable Solar wind meter](https://calypsoinstruments.com/shop/product/ultrasonic-portable-solar-wind-meter-2)
+   1. Wireless over BT, no solar power [Ultrasonic Portable Mini wind meter](https://calypsoinstruments.com/shop/product/cmi1022-ultrasonic-portable-mini-wind-meter-73)
    1. Wired over NMEA 0183 [Veinasa-CXS02B-N NMEA-0183](https://www.aliexpress.com/item/1005003788117590.html) + [NMEA 0183 to USB convertor](https://digitalyacht.co.uk/product/usb-nmea-adaptor/)
    1. Wired over modbus [MINI SIZE ULTRASONIC INTEGRATED WIND SPEED SENSOR AND WIND DIRECTION SENSOR](https://www.aliexpress.com/item/1005004105582503.html)
    1. [Modbus2USB converter](https://www.aliexpress.com/item/1005003076597700.html)
