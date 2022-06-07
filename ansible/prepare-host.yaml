@@ -1,0 +1,11 @@
+---
+
+
+# apt
+# - vim
+# - python3-serial
+# - python3-smbus
+# - minicom
+
+# Tasks
+# - add pi to tty group
