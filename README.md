@@ -1,8 +1,11 @@
 # OSS Marine Datalogger
-OSS datalogger for any sailing fan including support of set of gadgets to get real data.
+OSS datalogger for any sailing fan including support of set of gadgets to get real data to your sailing history.
 
 # Aim
 Let's create a set of hardware and software, so you can log your sailing trips under the open data and with as much detail as suits you.
+
+# Kick it up&running
+A thorought [guide to make your Rasberry your personal tracker](qsg.md)
 
 # External guides and inspirations
 [See more](external_links.md)
