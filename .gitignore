@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# 3D models gcode and printer settings
+*.gcode
+*.3mf
