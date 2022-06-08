@@ -12,3 +12,5 @@
    1. [Modbus2USB converter](https://www.aliexpress.com/item/1005003076597700.html)
 1. Compass
 1. High capacity power bank: ATM I'll use solar water proof like [this Sandberg](https://www.czc.cz/sandberg-solarni-outdoorova-powerbanka-24000mah-cerna/233773/produkt)
+1. 24x M2x8 metric screw for fixing all featured Grove modules
+1. 5x M2.5x8 screw for fixing Rasberry board and for better haptic experience with lif buttons (might be replaced in the future by printed parts)
