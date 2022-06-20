@@ -1,11 +1,33 @@
 ---
+- name: Configure localhost to support Marine Logger
+  hosts: "localhost"
+  connection: local
+  become: yes
+  become_method: sudo
+  become_user: root
+
+  tasks:
+    - name: Perform upgrade
+      apt:
+        autoclean: yes
+        autoremove: yes
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 86400 
+
+    - name: Install required packages
+      apt:
+        autoclean: yes
+        autoremove: yes
+        name: [
+          vim,
+          python3-serial,
+          python3-smbus,
+          minicom,
+          python3-gpio,
+        ]
 
 
-# apt
-# - vim
-# - python3-serial
-# - python3-smbus
-# - minicom
 
 # Tasks
 # - add pi to tty group

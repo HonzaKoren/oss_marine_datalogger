@@ -14,16 +14,18 @@
     1. Connect to Marine Logger web UI (automatically generated admin password is on your SSH terminal screen)
     
 ### Download latest stable copy of Marine Logger code
-'''bash
+```bash
+sudo apt update
+sudo apt install -y git
 cd ~
 git clone https://github.com/HonzaKoren/oss_marine_datalogger.git
-'''
+```
 
 ### Run setup
-'''bash
+```bash
 cd ~/oss_marine_datalogger
 ./install.sh
-'''
+```
 
 ### Connect to Marine Logger web UI
 Open https://<your_datalogger_IP_address_used_for_SSH_already>/

@@ -1,2 +1,4 @@
 # Host file configuring localhost
 localhost:
+  become_method: sudo
+  become: yes
