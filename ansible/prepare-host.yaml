@@ -1,6 +1,6 @@
 ---
 - name: Configure localhost to support Marine Logger
-  hosts: loggers
+  hosts: marinelogger
   connection: local
   become: yes
   become_method: sudo
