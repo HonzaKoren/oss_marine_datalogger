@@ -24,7 +24,7 @@
           python3-serial,
           python3-smbus,
           minicom,
-          python3-gpio,
+          python3-rpi.gpio,
         ]
 
 
