@@ -3,9 +3,10 @@ OSS datalogger for any sailing fan including support of set of gadgets to get re
 
 # Aim
 Let's create a set of hardware and software, so you can log your sailing trips under the open data and with as much detail as suits you.
+For look under the hood look at [architecture](architecture.md).
 
 # Kick it up&running
-A thorought [guide to make your Rasberry your personal tracker](qsg.md)
+A thorough [guide to make your Rasberry your personal tracker](qsg.md)
 
 # External guides and inspirations
 [See more](external_links.md)
@@ -19,6 +20,9 @@ A thorought [guide to make your Rasberry your personal tracker](qsg.md)
 - Barometer (for weather alarms)
 
 [Bill of material](bom.md)
+
+# Standard wiring
+[For no configuration customization use standard wiring schema.](wiring.md)
 
 # Features
 - Web interface to be used for visualisations
@@ -41,6 +45,8 @@ A thorought [guide to make your Rasberry your personal tracker](qsg.md)
     - Barometer (air pressure drop)
     - Wind speed (reefing alarm)
 - Possibility to store Windy data for current location along with tracking data
+
+Want more? Look, if we [plan it](backlog.md).
 
 # Open Points
 - Check out the possibility to broadcast data via BTLE to mobile apps
