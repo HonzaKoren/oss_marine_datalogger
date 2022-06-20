@@ -131,3 +131,6 @@ dmypy.json
 # 3D models gcode and printer settings
 *.gcode
 *.3mf
+
+# Ansible retry files
+*.retry
