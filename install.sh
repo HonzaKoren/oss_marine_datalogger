@@ -10,7 +10,7 @@ $APT autoremove -y
 
 # Necessary and usefull tools for running full stack deploy Ansible playbook
 
-$APT install ansible aptitude
+$APT install -y ansible aptitude
 
 cd ansible
 ansible-playbook prepare-host.yaml
