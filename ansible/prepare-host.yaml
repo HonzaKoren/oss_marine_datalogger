@@ -25,7 +25,15 @@
           python3-smbus,
           minicom,
           python3-rpi.gpio,
+          i2c-tools,
+          libi2c-dev,
         ]
+
+    - name: Enable I2C
+      ansible.builtin.lineinfile:
+        line: dtparam=i2c_arm=on
+        insertafter: #dtparam=i2c_arm=on
+        state: present
 
 
 

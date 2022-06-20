@@ -27,3 +27,6 @@ $APT install -y ansible aptitude
 
 cd ansible
 ansible-playbook prepare-host.yaml
+
+# All done, reboot to apply changes
+sudo reboot
