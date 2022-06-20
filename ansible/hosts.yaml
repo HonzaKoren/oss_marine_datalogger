@@ -1,5 +1,6 @@
 # Host file configuring localhost
 ---
-loggers:
+all:
   hosts:
-    marinelogger: 127.0.0.1
+    marinelogger:
+      ansible_host: 127.0.0.1
