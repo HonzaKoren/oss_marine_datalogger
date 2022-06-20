@@ -30,10 +30,20 @@
         ]
 
     - name: Enable I2C
-      ansible.builtin.lineinfile:
+      lineinfile:
         line: dtparam=i2c_arm=on
-        insertafter: #dtparam=i2c_arm=on
+        insertafter: "^#dtparam=i2c_arm=on"
         state: present
+        path: /boot/config.txt
+
+    - name: Disable console redirection to python3-serial
+      copy:
+        content: "root={{ ansible_facts['ansible_cmdline']['root'] }} rootfstype=ext4 fsck.repair=yes rootwait"
+        dest: /boot/cmdline.txt
+        mode: 0755
+        owner: root
+        group: root
+
 
 
 
