@@ -1,4 +1,5 @@
 # Host file configuring localhost
-localhost:
-  become_method: sudo
-  become: yes
+---
+loggers:
+  hosts:
+    marinelogger: 127.0.0.1
