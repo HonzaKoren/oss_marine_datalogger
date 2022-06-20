@@ -13,4 +13,4 @@ $APT autoremove -y
 $APT install ansible
 
 cd ansible
-ansible-playbook install.yaml
+ansible-playbook prepare-host.yaml
