@@ -6,6 +6,10 @@
   become_method: sudo
   become_user: root
 
+  vars:
+    - dest_dir: /home/pi
+    - grove_dir: "{{ dest_dir }}/GrovePi"
+
   tasks:
     - name: Perform upgrade
       apt:
@@ -38,11 +42,33 @@
 
     - name: Disable console redirection to python3-serial
       copy:
-        content: "root={{ ansible_facts['ansible_cmdline']['root'] }} rootfstype=ext4 fsck.repair=yes rootwait"
+        content: "root={{ ansible_facts['cmdline']['root'] }} rootfstype=ext4 fsck.repair=yes rootwait"
         dest: /boot/cmdline.txt
         mode: 0755
         owner: root
         group: root
+
+    - name: Clone recent GrovePi repository
+      git:
+        repo: https://github.com/DexterInd/GrovePi.git
+        dest: "{{ grove_dir }}"
+        clone: yes
+        update: yes
+        force: yes
+      delegate_to: localhost
+      become: no
+
+    - name: Upgrade GroupePi firmware
+      shell:
+        cmd: "echo y | {{ grove_dir }}/Firmware/firmware_update.sh"
+        chdir: "{{ grove_dir }}/Firmware/"
+
+    - name: Install Dexter software
+      shell:
+        cmd: "bash {{ grove_dir }}/Script/update_grovepi.sh --system-wide --no-update-aptget --bypass-gui-installation"
+        chdir: "{{ grove_dir }}/Firmware/"
+      delegate_to: localhost
+      become: no
 
 
 
