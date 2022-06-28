@@ -31,6 +31,7 @@
           python3-rpi.gpio,
           i2c-tools,
           libi2c-dev,
+          avrdude,
         ]
 
     - name: Enable I2C
