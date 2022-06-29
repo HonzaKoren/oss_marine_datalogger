@@ -3,7 +3,7 @@
     Test for evaluation off correct wiring.
     This test assumes, that wiring was made upon documentation.
     ToDo: Enable some button detection, so test can offer also an initial config generation.
-"""
+"""  # nopep8
 
 from typing import Tuple, Optional
 from time import sleep
