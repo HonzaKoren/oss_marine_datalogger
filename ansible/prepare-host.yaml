@@ -32,6 +32,7 @@
           i2c-tools,
           libi2c-dev,
           avrdude,
+          python3-pigpio,
         ]
 
     - name: Enable I2C
