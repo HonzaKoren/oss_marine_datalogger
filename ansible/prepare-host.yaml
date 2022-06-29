@@ -35,6 +35,12 @@
           python3-pigpio,
         ]
 
+    - name: Enable pigpiod
+      systemd:
+        name: pigpiod
+        enabled: yes
+        state: restarted
+
     - name: Enable I2C
       lineinfile:
         line: dtparam=i2c_arm=on
