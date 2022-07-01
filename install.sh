@@ -23,7 +23,10 @@ $APT autoremove -y
 
 # Necessary and usefull tools for running full stack deploy Ansible playbook
 
-$APT install -y ansible aptitude
+$APT install -y ansible aptitude python3-pip
+
+# upgrade pip3 and its packages
+sudo pip3 freeze | cut -f1 -d= | xargs -n1 pip3 install --upgrade
 
 cd ansible
 ansible-playbook prepare-host.yaml
