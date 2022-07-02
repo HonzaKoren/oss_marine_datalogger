@@ -1,0 +1,6 @@
+netaddr==0.7.19
+netifaces
+numpy==1.16.2
+pigpio==1.78
+pyserial==3.4
+smbus2==0.4.2

@@ -28,12 +28,13 @@
           minicom,
           i2c-tools,
           libi2c-dev,
-          python3-pigpio,
           python3-pip,
           python3-rpi.gpio,
           python3-serial,
           python3-smbus,
           vim,
+          python3-virtualenv,
+          virtualenvwrapper,
         ]
 
     - name: Enable pigpiod
@@ -49,7 +50,7 @@
         state: present
         path: /boot/config.txt
 
-    - name: Disable console redirection to python3-serial
+    - name: Disable console redirection to python3-serial to free RPi serial port for GPS
       copy:
         content: "root={{ ansible_facts['cmdline']['root'] }} rootfstype=ext4 fsck.repair=yes rootwait"
         dest: /boot/cmdline.txt
@@ -72,18 +73,22 @@
         cmd: "echo y | {{ grove_dir }}/Firmware/firmware_update.sh"
         chdir: "{{ grove_dir }}/Firmware/"
 
+    - name: Install Python3 pip packages
+      pip:
+        requirements: "{{ dest_dir }}/oss_marine_datalogger/requirements.txt"
+            - smbus2
+          - ansible
+          - django
+        virtualenv: "{{ dest_dir }}/.venv/prod"
+        state: present
+
     - name: Install Dexter software
       shell:
-        cmd: "bash {{ grove_dir }}/Script/update_grovepi.sh --system-wide --no-update-aptget --bypass-gui-installation"
+        cmd: "bash {{ grove_dir }}/Script/update_grovepi.sh --user-local --no-update-aptget --bypass-gui-installation"
         chdir: "{{ grove_dir }}/Firmware/"
       delegate_to: localhost
       become: no
 
-    - name: Install other Python3 pip packages
-      pip:
-        name:
-          - smbus2
-        state: present
 
 
 
