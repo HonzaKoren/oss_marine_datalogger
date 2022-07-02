@@ -40,7 +40,7 @@
     - name: Configure system with all known templates
       template:
         src: "{{ item }}"
-        dest: "/{{ item | split'/'[-1] | replace('_', '/')}}"
+        dest: "/{{ item | split('/')[-1] | replace('_', '/') }}"
         mode: 0640
         owner: root
         group: root
