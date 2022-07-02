@@ -50,6 +50,12 @@
         state: present
         path: /boot/config.txt
 
+    - name: Add local bin to PATH
+      lineinfile:
+        line: PATH=$PATH:/home/pi/.local/bin
+        state: present
+        path: "{{ dest_dir }}/.bashrc"
+
     - name: Disable console redirection to python3-serial to free RPi serial port for GPS
       copy:
         content: "root={{ ansible_facts['cmdline']['root'] }} rootfstype=ext4 fsck.repair=yes rootwait"
@@ -88,8 +94,6 @@
         chdir: "{{ grove_dir }}/Firmware/"
       delegate_to: localhost
       become: no
-
-
 
 
 
