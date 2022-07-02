@@ -60,7 +60,7 @@
     - name: Reconfigure nginx logging target
       lineinfile:
         line: "{{ item.line }}"
-        insertafter: "{{ item.where }}"
+        regexp: "{{ item.where }}"
         state: present
         path: /etc/nginx/nginx.conf
       loop:
