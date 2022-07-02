@@ -82,9 +82,6 @@
     - name: Install Python3 pip packages
       pip:
         requirements: "{{ dest_dir }}/oss_marine_datalogger/requirements.txt"
-            - smbus2
-          - ansible
-          - django
         virtualenv: "{{ dest_dir }}/.venv/prod"
         state: present
 
