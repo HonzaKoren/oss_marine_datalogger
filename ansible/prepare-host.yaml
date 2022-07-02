@@ -30,18 +30,32 @@
           libi2c-dev,
           python3-pip,
           python3-rpi.gpio,
-          python3-serial,
-          python3-smbus,
-          vim,
           python3-virtualenv,
+          uwsgi-emperor,
+          uwsgi-plugin-python3,
+          vim,
           virtualenvwrapper,
         ]
 
-    - name: Enable pigpiod
+    - name: Configure system with all known templates
+      template:
+        src: "{{ item }}"
+        dest: "/{{ item | replace('_', '/')}}"
+        mode: 0640
+        owner: root
+        group: root
+
+      with_fileglob: 'templates/*'
+
+    - name: Enable required backend daemons
       systemd:
         name: pigpiod
         enabled: yes
         state: restarted
+      loop:
+        - pigpiod
+        - nginx
+        - uwsgi-emperor
 
     - name: Enable I2C
       lineinfile:
