@@ -49,7 +49,7 @@
     - name: Activate new nginx config
       file:
         src: ../sites-available/marinelogger.conf
-        dest: /etc/nginx/sites-enabled/ 
+        dest: /etc/nginx/sites-enabled/marinelogger.conf
         state: link
 
     - name: Activate new nginx config
