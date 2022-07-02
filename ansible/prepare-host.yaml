@@ -46,6 +46,16 @@
         group: root
       with_fileglob: 'templates/*'
 
+    - name: Activate new nginx config
+      file:
+        src: ../sites-available/marinelogger.conf
+        dest: /etc/nginx/sites-enabled/ 
+        state: link
+
+    - name: Activate new nginx config
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
 
     - name: Mount tmpfs to save SD card writes
       mount:
