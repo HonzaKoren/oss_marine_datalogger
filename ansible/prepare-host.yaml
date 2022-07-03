@@ -185,6 +185,7 @@
       shell:
         cmd: "echo y | {{ grove_dir }}/Firmware/firmware_update.sh"
         chdir: "{{ grove_dir }}/Firmware/"
+      ignore_errors: yes
 
 # Tasks
 # - add pi to tty group
