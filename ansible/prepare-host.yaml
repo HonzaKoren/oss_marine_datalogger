@@ -156,7 +156,7 @@
 
     - name: Prepare venv inplace installer file
       copy:
-        content: "source {{ dest_dir }}.virtualenvs/prod/bin/activate\nexec {{ grove_dir }}/Script/update_grovepi.sh --env-local --no-update-aptget --bypass-gui-installation\npython3 {{ dest_dir }}/Dexter/lib/Dexter/RFR_Tools/miscellaneous/setup.py"
+        content: "chmod +x {{ grove_dir }}/Script/update_grovepi.sh\nsource {{ dest_dir }}.virtualenvs/prod/bin/activate\nexec {{ grove_dir }}/Script/update_grovepi.sh --env-local --no-update-aptget --bypass-gui-installation\npython3 {{ dest_dir }}/Dexter/lib/Dexter/RFR_Tools/miscellaneous/setup.py"
         dest: "{{ dest_dir }}/tmp.sh"
         owner: pi
         group: pi
