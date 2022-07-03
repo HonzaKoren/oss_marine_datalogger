@@ -138,6 +138,12 @@
       delegate_to: localhost
       become: no
 
+    - name: Install Dexter software
+      shell:
+        cmd: "source {{ dest_dir }}/.virtualenvs/prod/bin/activate && bash {{ grove_dir }}/Script/update_grovepi.sh --system-wide --no-update-aptget --bypass-gui-installation"
+      delegate_to: localhost
+      become: no
+
     - name: Upgrade GrovePi firmware
       shell:
         cmd: "echo y | {{ grove_dir }}/Firmware/firmware_update.sh"
@@ -159,10 +165,9 @@
 
     - name: Install Dexter software
       shell:
-        cmd: "source {{ dest_dir }}/.virtualenvs/prod/bin/activate && bash {{ grove_dir }}/Script/update_grovepi.sh --user-local --no-update-aptget --bypass-gui-installation"
+        cmd: "source {{ dest_dir }}/.virtualenvs/prod/bin/activate && bash {{ grove_dir }}/Script/update_grovepi.sh --env-local --no-update-aptget --bypass-gui-installation"
       delegate_to: localhost
       become: no
-
 
 
 # Tasks
