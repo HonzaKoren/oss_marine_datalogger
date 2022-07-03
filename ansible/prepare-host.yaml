@@ -160,7 +160,7 @@
         dest: "{{ dest_dir }}/tmp.sh"
         owner: pi
         group: pi
-        mode: 600
+        mode: 0750
       become: no
       delegate_to: localhost
 
