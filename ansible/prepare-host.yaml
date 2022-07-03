@@ -175,7 +175,6 @@
         path: "{{ dest_dir }}/tmp.sh"
         state: absent
 
-    - name: Install misc RFR tools
     - name: Upgrade GrovePi firmware
       shell:
         cmd: "echo y | {{ grove_dir }}/Firmware/firmware_update.sh"
