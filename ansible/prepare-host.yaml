@@ -140,6 +140,12 @@
       delegate_to: localhost
       become: no
 
+    - name: Install grove system wide to enable modules
+      shell:
+        cmd: "bash {{ grove_dir }}/Script/update_grovepi.sh --system-wide --no-update-aptget --bypass-gui-installation"
+      become: no
+      delegate_to: localhost
+
     - name: Create a prod virtual env
       shell:
         cmd: "/usr/bin/virtualenv -p /usr/bin/python3 --prompt='(prod) ' {{ dest_dir }}/.virtualenvs/prod"
