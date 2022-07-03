@@ -138,6 +138,12 @@
       delegate_to: localhost
       become: no
 
+    - name: Create a prod virtual env
+      shell:
+        cmd: "/usr/bin/virtualenv -p /usr/bin/python3 --prompt='(prod) ' --no-site-packages {{ dest_dir }}/.virtualenvs/prod"
+      delegate_to: localhost
+      become: no
+
     - name: Install Dexter software
       shell:
         cmd: "source {{ dest_dir }}/.virtualenvs/prod/bin/activate && bash {{ grove_dir }}/Script/update_grovepi.sh --system-wide --no-update-aptget --bypass-gui-installation"
@@ -148,12 +154,6 @@
       shell:
         cmd: "echo y | {{ grove_dir }}/Firmware/firmware_update.sh"
         chdir: "{{ grove_dir }}/Firmware/"
-
-    - name: Create a prod virtual env
-      shell:
-        cmd: "/usr/bin/virtualenv -p /usr/bin/python3 --prompt='(prod) ' --no-site-packages {{ dest_dir }}/.virtualenvs/prod"
-      delegate_to: localhost
-      become: no
 
     - name: Install Python3 pip packages
       pip:
