@@ -3,6 +3,9 @@
 # Check locales and add en_US to default set
 locales=$(grep -v -e "^#" -e "^$" -e "en_GB.UTF-8" /etc/locale.gen | wc -l)
 
+# Set ff only strategy
+git config --global pull.ff true
+
 # If there is only a default locale set, add en_US.UTF-8
 if [ $locales -eq 0 ]
 then
