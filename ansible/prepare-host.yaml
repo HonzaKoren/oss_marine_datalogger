@@ -140,7 +140,7 @@
 
     - name: Create a prod virtual env
       shell:
-        cmd: "/usr/bin/virtualenv -p /usr/bin/python3 --prompt='(prod) ' --no-site-packages {{ dest_dir }}/.virtualenvs/prod"
+        cmd: "/usr/bin/virtualenv -p /usr/bin/python3 --prompt='(prod) ' {{ dest_dir }}/.virtualenvs/prod"
       delegate_to: localhost
       become: no
 
