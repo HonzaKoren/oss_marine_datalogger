@@ -96,14 +96,23 @@
       loop:
         - i2c-dev
         - i2c-bcm2708
-        - spi-dev
+        - spidev
 
-    - name: Enable I2C
+    - name: Enable I2C and SPI hardware
       lineinfile:
-        line: dtparam=i2c_arm=on
-        insertafter: "^#dtparam=i2c_arm=on"
+        line: "{{ item }}"
         state: present
         path: /boot/config.txt
+      loop:
+        - dtparam=spi=on
+        - dtoverlay=pi3-disable-bt 
+        - dtoverlay=pi3-miniuart-bt
+        - dtoverlay=vc4-kms-v3d
+        - dtoverlay=w1-gpio
+        - dtparam=audio=on
+        - dtparam=i2c1=on
+        - dtparam=i2c_arm=on
+        - enable_uart=1
 
     - name: Add local bin to PATH
       lineinfile:
