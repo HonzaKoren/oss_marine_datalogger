@@ -27,6 +27,7 @@
           avrdude,
           minicom,
           i2c-tools,
+          libffi-dev,
           libi2c-dev,
           libncurses5,
           nginx-light,
@@ -144,17 +145,6 @@
       delegate_to: localhost
       become: no
 
-    - name: Install Dexter software
-      shell:
-        cmd: "source {{ dest_dir }}/.virtualenvs/prod/bin/activate && bash {{ grove_dir }}/Script/update_grovepi.sh --system-wide --no-update-aptget --bypass-gui-installation"
-      delegate_to: localhost
-      become: no
-
-    - name: Upgrade GrovePi firmware
-      shell:
-        cmd: "echo y | {{ grove_dir }}/Firmware/firmware_update.sh"
-        chdir: "{{ grove_dir }}/Firmware/"
-
     - name: Install Python3 pip packages
       pip:
         requirements: "{{ dest_dir }}/oss_marine_datalogger/requirements.txt"
@@ -162,6 +152,27 @@
         state: present
       delegate_to: localhost
       become: no
+
+    - name: Prepare venv inplace installer file
+      copy:
+        content: "source {{ dest_dir }}.virtualenvs/prod/bin/activate\nexec {{ grove_dir }}/Script/update_grovepi.sh --env-local --no-update-aptget --bypass-gui-installation"
+        dest: "{{ dest_dir }}/tmp.sh"
+        owner: pi
+        group: pi
+        mode: 600
+      become: no
+      delegate_to: localhost
+
+    - name: Install Dexter software
+      shell:
+        cmd: "bash {{ dest_dir }}/tmp.sh"
+      delegate_to: localhost
+      become: no
+
+    - name: Upgrade GrovePi firmware
+      shell:
+        cmd: "echo y | {{ grove_dir }}/Firmware/firmware_update.sh"
+        chdir: "{{ grove_dir }}/Firmware/"
 
     - name: Install Dexter software
       shell:
