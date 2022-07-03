@@ -27,6 +27,7 @@
           avrdude,
           minicom,
           i2c-tools,
+          libatlas-base-dev,
           libffi-dev,
           libi2c-dev,
           libncurses5,
@@ -155,7 +156,7 @@
 
     - name: Prepare venv inplace installer file
       copy:
-        content: "source {{ dest_dir }}.virtualenvs/prod/bin/activate\nexec {{ grove_dir }}/Script/update_grovepi.sh --env-local --no-update-aptget --bypass-gui-installation"
+        content: "source {{ dest_dir }}.virtualenvs/prod/bin/activate\nexec {{ grove_dir }}/Script/update_grovepi.sh --env-local --no-update-aptget --bypass-gui-installation\npython3 {{ dest_dir }}/Dexter/lib/Dexter/RFR_Tools/miscellaneous/setup.py"
         dest: "{{ dest_dir }}/tmp.sh"
         owner: pi
         group: pi
@@ -169,17 +170,16 @@
       delegate_to: localhost
       become: no
 
+    - name: Remove temporary install script
+      file:
+        path: "{{ dest_dir }}/tmp.sh"
+        state: absent
+
+    - name: Install misc RFR tools
     - name: Upgrade GrovePi firmware
       shell:
         cmd: "echo y | {{ grove_dir }}/Firmware/firmware_update.sh"
         chdir: "{{ grove_dir }}/Firmware/"
-
-    - name: Install Dexter software
-      shell:
-        cmd: "source {{ dest_dir }}/.virtualenvs/prod/bin/activate && bash {{ grove_dir }}/Script/update_grovepi.sh --env-local --no-update-aptget --bypass-gui-installation"
-      delegate_to: localhost
-      become: no
-
 
 # Tasks
 # - add pi to tty group
