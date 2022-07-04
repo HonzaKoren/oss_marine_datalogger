@@ -211,6 +211,10 @@
       delegate_to: localhost
       become: no
 
+    - name: Make virtualenvwrapper active upon login
+      lineinfile:
+        path: /etc/bash.bashrc
+        line: source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 
 # Tasks
 # - add pi to tty group
