@@ -195,10 +195,10 @@
         chdir: "{{ grove_dir }}/Firmware/"
       ignore_errors: yes
 
-    - name: Add pi user to dialout group to enable access to GPS
+    - name: Add pi user to dialout group to enable access to GPS and www-data to access log files
       user:
         name: pi
-        groups: dialout
+        groups: dialout,www-data
         append: yes
 
 # Tasks
