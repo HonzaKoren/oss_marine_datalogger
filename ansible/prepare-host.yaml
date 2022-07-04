@@ -68,10 +68,10 @@
 
     - name: Set file permissions, where necessary
       file:
-        path: ""
-        owner: ""
-        group: ""
-        mode: ""
+        path: "{{ item.path }}"
+        owner: "{{ item.owner }}"
+        group: "{{ item.group }}"
+        mode: "{{ item.mode }}"
       loop:
         - {'path': '/etc/uwsgi-emperor/vassals/pi.ini', 'owner': 'root', 'group': 'pi', 'mode': '0640'}
 
