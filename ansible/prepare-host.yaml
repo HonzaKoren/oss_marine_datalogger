@@ -11,6 +11,13 @@
     - grove_dir: "{{ dest_dir }}/GrovePi"
 
   tasks:
+    - name: Install ansible plugins
+      shell:
+        cmd: "ansible-galaxy collection install {{ item }}"
+      ignore_errors: yes
+      loop:
+        - community.general
+
     - name: Perform upgrade
       apt:
         autoclean: yes
@@ -187,6 +194,8 @@
         chdir: "{{ grove_dir }}/Firmware/"
       ignore_errors: yes
 
+    - name: Add pi user to dialout group to enable access to GPS
+      user:
 
 # Tasks
 # - add pi to tty group
