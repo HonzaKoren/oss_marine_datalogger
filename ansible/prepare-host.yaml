@@ -9,6 +9,7 @@
   vars:
     - dest_dir: /home/pi
     - grove_dir: "{{ dest_dir }}/GrovePi"
+    - app_dir: "{{ dest_dir }}/oss_marine_datalogger"
 
   tasks:
     - name: Install ansible plugins
