@@ -66,6 +66,15 @@
         group: root
       with_fileglob: 'templates/*'
 
+    - name: Set file permissions, where necessary
+      file:
+        path: ""
+        owner: ""
+        group: ""
+        mode: ""
+      loop:
+        - {'path': '/etc/uwsgi-emperor/vassals/pi.ini', 'owner': 'root', 'group': 'pi', 'mode': '0640'}
+
     - name: Activate new nginx config
       file:
         src: ../sites-available/marinelogger.conf
