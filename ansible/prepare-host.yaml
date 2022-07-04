@@ -210,5 +210,14 @@
         groups: dialout,www-data
         append: yes
 
+    - name: Install pip packages for web
+      pip:
+        requirements: "{{ dest_dir }}/oss_marine_datalogger/web/requirements/production.txt"
+        virtualenv: "{{ dest_dir }}/.virtualenvs/prod"
+        state: present
+      delegate_to: localhost
+      become: no
+
+
 # Tasks
 # - add pi to tty group
