@@ -196,6 +196,9 @@
 
     - name: Add pi user to dialout group to enable access to GPS
       user:
+        name: pi
+        groups: dialout
+        append: yes
 
 # Tasks
 # - add pi to tty group
