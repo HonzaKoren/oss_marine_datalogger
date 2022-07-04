@@ -25,7 +25,6 @@
         autoclean: yes
         autoremove: yes
         name: [
-          ansible,
           avrdude,
           minicom,
           i2c-tools,
@@ -50,13 +49,6 @@
           vim,
           virtualenvwrapper,
         ]
-
-    - name: Install ansible plugins
-      shell:
-        cmd: "ansible-galaxy collection install {{ item }}"
-      ignore_errors: yes
-      loop:
-        - community.general
 
     - name: Configure system with all known templates
       template:
