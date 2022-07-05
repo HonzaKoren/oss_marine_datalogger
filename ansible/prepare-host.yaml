@@ -144,6 +144,7 @@
     - name: Run GrovePi system wide setup
       shell:
         cmd: "curl -kL dexterindustries.com/update_grovepi | bash -s -- --system-wide --no-update-aptget --bypass-gui-installation"
+        warn: false
       become: no
       delegate_to: localhost
 
