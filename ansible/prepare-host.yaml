@@ -99,6 +99,7 @@
         - pigpiod
         - nginx
         - uwsgi-emperor
+      ignore_errors: yes
 
     - name: Load required modules
       lineinfile:
