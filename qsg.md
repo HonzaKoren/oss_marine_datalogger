@@ -26,7 +26,10 @@ git clone https://github.com/HonzaKoren/oss_marine_datalogger.git
 cd ~/oss_marine_datalogger
 ./install.sh
 ```
-
+Or alternatively as a single liner
+```bash
+sudo apt update && sudo apt install -y git && cd ~ && git clone https://github.com/HonzaKoren/oss_marine_datalogger.git && cd ~/oss_marine_datalogger && ./install.sh
+```
 ### Connect to Marine Logger web UI
 Open https://<your_datalogger_IP_address_used_for_SSH_already>/
 Default superuser of Marine Datalogger is <em>admin</em>, initial password for that user was generated and shown in the previous step.
