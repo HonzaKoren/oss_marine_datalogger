@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Default values
+my_locale=en_US.UTF-8
+
 # Check locales and add en_US to default set
 locales=$(grep -v -e "^#" -e "^$" -e "en_GB.UTF-8" /etc/locale.gen | wc -l)
 
@@ -9,25 +12,18 @@ git config --global pull.ff true
 # If there is only a default locale set, add en_US.UTF-8
 if [ $locales -eq 0 ]
 then
-    echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen
-    echo "LANG=en_US.UTF-8" | sudo tee /etc/default/locale
-    echo "LANGUAGE=en_US.UTF-8" | sudo tee -a /etc/default/locale
-    echo "LC_ALL=en_US.UTF-8" | sudo tee -a /etc/default/locale
-    echo "LC_ADDRESS=en_US.UTF-8" | sudo tee -a /etc/default/locale
-    echo "LC_NAME=en_US.UTF-8" | sudo tee -a /etc/default/locale
-    echo "LC_MONETARY=en_US.UTF-8" | sudo tee -a /etc/default/locale
-    echo "LC_PAPER=en_US.UTF-8" | sudo tee -a /etc/default/locale
-    echo "LC_IDENTIFICATION=en_US.UTF-8" | sudo tee -a /etc/default/locale
-    echo "LC_TELEPHONE=en_US.UTF-8" | sudo tee -a /etc/default/locale
-    echo "LC_MEASUREMENT=en_US.UTF-8" | sudo tee -a /etc/default/locale
-    echo "LC_TIME=en_US.UTF-8" | sudo tee -a /etc/default/locale
-    echo "LC_ALL=en_US.UTF-8" | sudo tee -a /etc/default/locale
-    echo "LC_COLLATE=en_US.UTF-8" | sudo tee -a /etc/default/locale
-    echo "LC_NUMERIC=en_US.UTF-8" | sudo tee -a /etc/default/locale
+    echo "$my_locale UTF-8" | sudo tee -a /etc/locale.gen
 fi
 
 # Re-generate locales
 sudo locale-gen
+
+# Update system settings
+for var in LANG LANGUAGE LC_ALL LC_ADDRESS LC_NAME LC_MONETARY LC_PAPER LC_IDENTIFICATION LC_TELEPHONE LC_MEASUREMENT LC_TIME LC_ALL LC_COLLATE LC_NUMERIC
+do
+    sudo update-locale $var=$my_locale
+done
+source /etc/default/locale
 
 # Just to be sure, make a full update
 APT="sudo $(which apt)"
