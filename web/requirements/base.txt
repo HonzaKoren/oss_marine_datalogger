@@ -1,3 +1,4 @@
+RUST==0.1.1
 pytz==2022.1  # https://github.com/stub42/pytz
 python-slugify==6.1.2  # https://github.com/un33k/python-slugify
 Pillow==9.1.1  # https://github.com/python-pillow/Pillow
