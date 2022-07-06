@@ -21,9 +21,6 @@ env = environ.Env()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-h*e)-e9by6=k-5*7td4az1dlr4i&d8_nsz=@mb#h3x5)0y59g-'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
