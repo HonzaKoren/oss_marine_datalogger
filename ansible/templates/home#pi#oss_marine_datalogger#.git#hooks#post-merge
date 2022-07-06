@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# web repository directory
+DEST_DIR="{{ app_dir }}"
+REPO_DIR="{{ app_dir }}"
+
+# remote repository
+REMOTE_REPO="origin"
+
+# public branch of the remote repository
+REMOTE_REPO_BRANCH="master"
+
+cd $REPO_DIR || exit
+unset GIT_DIR
+files="$(git diff-tree -r --name-only --no-commit-id HEAD@{1} HEAD)"
+
+# Check, if web restart is required
+restart_web=0
+ansible=0
+
+for file in $files
+do
+  # Relative path, check, if anything in web has changed
+  file_base=$(echo $file | cut -f1 -d/)
+  if [ $file_base == "web" ]
+  then
+    restart_web=1
+  fi
+  if [ $file_base == "ansible" ]
+  then
+    ansible=1
+  fi
+done
+
+# Activate virtual_env
+source $DEST_DIR/.virtualenvs/prod/bin/activate
+
+if [ $ansible -eq 1 ]
+then
+  # Play, boy!
+  cd $REPO_DIR/ansible
+  ansible-playbook prepare-host.yaml &>$DEST_DIR/runtime/log/ansible.log
+fi
+
+cd $REPO_DIR/web
+migrate=$(./manage.py migrate --check &>/dev/null && echo 0 || echo 1)
+if [ $migrate -eq 1 ]
+then
+  # Migration is pending, perform!
+  ./manage.py migrate &>$DEST_DIR/runtime/log/migration.log
+fi
+
+if [ $restart_web -eq 1 ]
+then
+  # Reload application server
+  touch $DEST_DIR/deploy.txt
+fi
+
