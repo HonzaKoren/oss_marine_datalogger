@@ -67,6 +67,7 @@
         mode: "{{ item.mode }}"
       loop:
         - {'path': '/etc/uwsgi-emperor/vassals/pi.ini', 'owner': 'root', 'group': 'pi', 'mode': '0640'}
+        - {'path': '{{ app_dir }}/.git/hooks/post-merge', 'owner': 'pi', 'group': 'pi', 'mode': '0750'}
 
     - name: Activate new nginx config
       file:
