@@ -44,6 +44,7 @@
           python3-setuptools,
           python3-smbus,
           python3-virtualenv,
+          software-properties-common,
           uwsgi-emperor,
           uwsgi-plugin-python3,
           vim,
@@ -151,6 +152,11 @@
         warn: false
       become: no
       delegate_to: localhost
+
+    - name: Install misc libraries for GrovePi
+      shell:
+        cmd: python3 setup.py install
+        chdir: /home/pi/Dexter/lib/Dexter/RFR_Tools/miscellaneous
 
     - name: Create a prod virtual env
       shell:
