@@ -1,0 +1,5 @@
+#!/bin/bash
+# This hook is sourced after this virtualenv is activated.
+
+export DJANGO_SECRET_KEY={{ lookup('password', '/dev/null chars=ascii_lowercase,digits length=64') }}
+export DJANGO_SETTINGS_MODULE=config.settings.production
