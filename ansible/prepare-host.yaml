@@ -51,6 +51,12 @@
           virtualenvwrapper,
         ]
 
+    - name: Create a prod virtual env
+      shell:
+        cmd: "/usr/bin/virtualenv -p /usr/bin/python3 --prompt='(prod) ' {{ dest_dir }}/.virtualenvs/prod"
+      delegate_to: localhost
+      become: no
+
     - name: Configure system with all known templates
       template:
         src: "{{ item }}"
@@ -157,12 +163,6 @@
       shell:
         cmd: python3 setup.py install
         chdir: /home/pi/Dexter/lib/Dexter/RFR_Tools/miscellaneous
-
-    - name: Create a prod virtual env
-      shell:
-        cmd: "/usr/bin/virtualenv -p /usr/bin/python3 --prompt='(prod) ' {{ dest_dir }}/.virtualenvs/prod"
-      delegate_to: localhost
-      become: no
 
     - name: Install Python3 pip packages
       pip:
