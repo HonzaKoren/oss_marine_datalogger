@@ -9,4 +9,4 @@
 - D7: Down
 - D8: Up
 - I2C3: RGB lighted two row LCD
-- I2C2: Accelerometer and barometer
+- I2C2: Accelerometer (MPU9250 - 0x68) and barometer (BMP280 - 0x77)
