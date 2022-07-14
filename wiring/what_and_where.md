@@ -8,5 +8,5 @@
 - D6: Buzzer
 - D7: Down
 - D8: Up
-- I2C3: RGB lighted two row LCD
+- I2C3: RGB lighted two row LCD (text - 0x3e, RGB - 0x62)
 - I2C2: Accelerometer (MPU9250 - 0x68) and barometer (BMP280 - 0x77)
