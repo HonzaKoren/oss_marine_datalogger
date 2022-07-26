@@ -1,0 +1,194 @@
+[
+{
+    "model": "configurator.configuration",
+    "pk": "button.digital.down.active",
+    "fields": {
+        "value": "1",
+        "comment": ""
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "button.digital.down.source",
+    "fields": {
+        "value": "7",
+        "comment": ""
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "button.digital.enter.active",
+    "fields": {
+        "value": "1",
+        "comment": ""
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "button.digital.enter.source",
+    "fields": {
+        "value": "4",
+        "comment": ""
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "button.digital.up.active",
+    "fields": {
+        "value": "1",
+        "comment": ""
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "button.digital.up.source",
+    "fields": {
+        "value": "8",
+        "comment": ""
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "lcd.i2c.rgb.active",
+    "fields": {
+        "value": "1",
+        "comment": ""
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "lcd.i2c.text.active",
+    "fields": {
+        "value": "1",
+        "comment": ""
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "out.digital.buzzer.active",
+    "fields": {
+        "value": "1",
+        "comment": ""
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "out.digital.buzzer.source",
+    "fields": {
+        "value": "6",
+        "comment": ""
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "out.digital.led.green.active",
+    "fields": {
+        "value": "1",
+        "comment": ""
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "out.digital.led.green.pwm",
+    "fields": {
+        "value": "1",
+        "comment": ""
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "out.digital.led.green.source",
+    "fields": {
+        "value": "3",
+        "comment": ""
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "out.digital.led.red.active",
+    "fields": {
+        "value": "1",
+        "comment": ""
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "out.digital.led.red.pwm",
+    "fields": {
+        "value": "1",
+        "comment": ""
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "out.digital.led.red.source",
+    "fields": {
+        "value": "5",
+        "comment": ""
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "sensor.digital.dht11.active",
+    "fields": {
+        "value": "1",
+        "comment": "Should I query DHT11 sensor?\r\n0 - No\r\n1 - Yes"
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "sensor.digital.dht11.source",
+    "fields": {
+        "value": "2",
+        "comment": "Digital pin used by DHT11 sensor.\r\n\r\nIn standard setup it is D2, for this use 2."
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "sensor.i2c.accelerometer.active",
+    "fields": {
+        "value": "1",
+        "comment": "Should I query Accelerometer sensor?\r\n0 - No\r\n1 - Yes"
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "sensor.i2c.accelerometer.source",
+    "fields": {
+        "value": "0x68",
+        "comment": "I2C address of MPU9250 sensor."
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "sensor.i2c.barometer.active",
+    "fields": {
+        "value": "1",
+        "comment": "Should I query Accelerometer sensor?\r\n0 - No\r\n1 - Yes"
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "sensor.serial.location.active",
+    "fields": {
+        "value": "1",
+        "comment": "Should I query location sensor?\r\n0 - No\r\n1 - Yes"
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "sensor.serial.location.baudrate",
+    "fields": {
+        "value": "9600",
+        "comment": "Serial port speed in standard bps.\r\n\r\nUsually there is fine using 9600 for UART serial and 115200 for USB serial emulation."
+    }
+},
+{
+    "model": "configurator.configuration",
+    "pk": "sensor.serial.location.source",
+    "fields": {
+        "value": "/dev/ttyAMA0",
+        "comment": "GrovePI+ port used by Air530 location sensor.\r\n\r\nIn standard setup it is RPISER propagated in OS to /dev/ttyAMA0"
+    }
+}
+]
