@@ -41,4 +41,7 @@ cd ansible
 ansible-playbook prepare-host.yaml
 
 # All done, reboot to apply changes
-sudo reboot
+if [ $? -eq 0 ]
+then
+    sudo reboot
+fi
