@@ -137,3 +137,9 @@ dmypy.json
 
 # Ignore local external sources
 External/
+
+# Ignore theia local files
+.theia
+
+# Ignore kate editor swap
+*.kate-swp
