@@ -92,6 +92,7 @@
         mode: "{{ item.mode }}"
       loop:
         - {'path': '/etc/uwsgi-emperor/vassals/pi.ini', 'owner': 'root', 'group': 'pi', 'mode': '0640'}
+        - {'path': '/usr/local/sbin/sync.boot.sh', 'owner': 'root', 'group': 'root', 'mode': '0755'}
         - {'path': '{{ app_dir }}/.git/hooks/post-merge', 'owner': 'pi', 'group': 'pi', 'mode': '0750'}
         - {'path': '{{ app_dir }}/.git/hooks/post-merge', 'owner': 'pi', 'group': 'pi', 'mode': '0750'}
         - {'path': '{{ dest_dir }}/.virtualenvs/prod/bin/postactivate', 'owner': 'pi', 'group': 'pi', 'mode': '0750'}
