@@ -28,8 +28,8 @@
         mode: "{{ item.mode }}"
         state: directory
       loop:
-        - {'path': '{{ dest_dir }}/runtime', 'owner': 'pi', 'group': 'pi', 'mode': '0750'}
-        - {'path': '{{ dest_dir }}/runtime/log', 'owner': 'pi', 'group': 'www-data', 'mode': '0770'}
+        - {'path': '/home/pi/runtime', 'owner': 'pi', 'group': 'pi', 'mode': '0750'}
+        - {'path': '/home/pi/runtime/log', 'owner': 'pi', 'group': 'www-data', 'mode': '0770'}
 
     - name: Install required packages
       apt:
@@ -103,7 +103,7 @@
         dest: /etc/nginx/sites-enabled/marinelogger.conf
         state: link
 
-    - name: Mount tmpfs to save SD card writes
+    - name: Mount tmpfs to save disk writes
       mount:
         src: tmpfs
         path: "{{ item.path }}"
