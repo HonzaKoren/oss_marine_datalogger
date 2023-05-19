@@ -151,6 +151,7 @@
         - dtparam=i2c1=on
         - dtparam=i2c_arm=on
         - enable_uart=1
+        - disable_splash=1
 
     - name: Add local bin to PATH to calm down chardetect
       lineinfile:
