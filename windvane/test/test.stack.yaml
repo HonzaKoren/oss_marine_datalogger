@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  dev_oss_ml_test:
+    image: nexus.firma.kekorenum.com:5000/webtest
+    environment:
+      DESTINATION: 172.16.100.18
+      COUNT: 10000
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == docker1
+
+  prod_oss_ml_test:
+    image: nexus.firma.kekorenum.com:5000/webtest
+    environment:
+      DESTINATION: 172.16.100.34
+      COUNT: 10000
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == docker1
+
