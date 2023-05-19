@@ -161,7 +161,7 @@
 
     - name: Disable console redirection to python3-serial to free RPi serial port for GPS
       copy:
-        content: "root={{ ansible_facts['cmdline']['root'] }} rootfstype=ext4 fsck.repair=yes rootwait"
+        content: "root={{ ansible_facts['cmdline']['root'] }} rootfstype=ext4 fsck.repair=yes rootwait quiet plymouth.ignore-serial-consoles"
         dest: /boot/cmdline.txt
         mode: 0755
         owner: root
