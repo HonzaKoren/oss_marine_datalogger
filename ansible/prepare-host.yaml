@@ -20,6 +20,17 @@
         update_cache: yes
         cache_valid_time: 86400 
 
+    - name: Create required directories
+      file:
+        path: "{{ item.path }}"
+        owner: "{{ item.owner }}"
+        group: "{{ item.group }}"
+        mode: "{{ item.mode }}"
+        state: directory
+      loop:
+        - {'path': '{{}}/runtime', 'owner': 'pi', 'group': 'pi', 'mode': '0750'}
+        - {'path': '{{}}/runtime/log', 'owner': 'pi', 'group': 'www-data', 'mode': '0770'}
+
     - name: Install required packages
       apt:
         autoclean: yes
@@ -52,6 +63,11 @@
           vim,
           virtualenvwrapper,
         ]
+
+    - name: Remove nginx default config
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
 
     - name: Create a prod virtual env
       shell:
@@ -87,11 +103,6 @@
         dest: /etc/nginx/sites-enabled/marinelogger.conf
         state: link
 
-    - name: Remove nginx default config
-      file:
-        path: /etc/nginx/sites-enabled/default
-        state: absent
-
     - name: Mount tmpfs to save SD card writes
       mount:
         src: tmpfs
@@ -100,8 +111,8 @@
         opts: "{{ item.opts }}"
         state: present
       loop:
-        - {'path': '/var/log', 'opts': 'nodev,nosuid,size=100M'}
-        - {'path': '/home/pi/runtime', 'opts': 'nodev,nosuid,uid=1000,gid=1000,size=200M'}
+        - {'path': '/var/log', 'opts': 'nodev,nosuid,size=500M'}
+        - {'path': '/home/pi/runtime', 'opts': 'nodev,nosuid,uid=1000,gid=1000,size=500M'}
 
     - name: Enable required backend daemons
       systemd:
