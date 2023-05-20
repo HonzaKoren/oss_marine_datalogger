@@ -39,7 +39,7 @@
         warn: no
 
     - name: Add docker repo
-      ansible.builtin.apt_repository:
+      apt_repository:
         repo: deb [arch="armhf" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian buster stable
         state: present
         filename: docker
