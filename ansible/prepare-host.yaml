@@ -132,6 +132,8 @@
         - {'path': '{{ app_dir }}/.git/hooks/post-merge', 'owner': 'pi', 'group': 'pi', 'mode': '0750'}
         - {'path': '{{ dest_dir }}/.virtualenvs/prod/bin/postactivate', 'owner': 'pi', 'group': 'pi', 'mode': '0750'}
         - {'path': '{{ dest_dir }}/.virtualenvs/prod/bin/predeactivate', 'owner': 'pi', 'group': 'pi', 'mode': '0750'}
+        - {'path': '{{ dest_dir }}/deploy.txt', 'owner': 'pi', 'group': 'pi', 'mode': '0640'}
+
 
     - name: Activate new nginx config
       file:
