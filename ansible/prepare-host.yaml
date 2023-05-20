@@ -45,6 +45,13 @@
         filename: docker
         update_cache: yes
 
+    - name: Add user pi to docker group
+      user:
+        name: pi
+        groups: docker
+        append: yes
+        state: present
+
     - name: Install required packages
       apt:
         autoclean: yes
