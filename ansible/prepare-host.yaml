@@ -38,12 +38,23 @@
         creates: /etc/apt/keyrings/docker.gpg
         warn: no
 
+    - name: Add docker repo
+      ansible.builtin.apt_repository:
+        repo: deb [arch="armhf" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian buster stable
+        state: present
+        filename: docker
+        update_cache: yes
+
     - name: Install required packages
       apt:
         autoclean: yes
         autoremove: yes
         name: [
           avrdude,
+          docker-ce,
+          docker-ce-cli,
+          docker-ce-rootless-extras,
+          docker-compose-plugin,
           minicom,
           i2c-tools,
           libatlas-base-dev,
