@@ -17,6 +17,7 @@ files="$(git diff-tree -r --name-only --no-commit-id HEAD@{1} HEAD)"
 # Check, if web restart is required
 restart_web=0
 ansible=0
+docker=0
 
 for file in $files
 do
@@ -30,6 +31,10 @@ do
   then
     ansible=1
   fi
+  if [ $file_base == "docker" ]
+  then
+    docker=1
+  fi
 done
 
 # Activate virtual_env
@@ -40,6 +45,17 @@ then
   # Play, boy!
   cd $REPO_DIR/ansible
   ansible-playbook prepare-host.yaml &>$DEST_DIR/runtime/log/ansible.log
+fi
+
+if [ $docker -eq 1 ]
+then
+  # Compose
+  cd $REPO_DIR/docker
+  for i in *
+  do
+    cd $i
+    docker-compose up -d
+    cd -
 fi
 
 cd $REPO_DIR/web
