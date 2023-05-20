@@ -31,6 +31,10 @@
         - {'path': '/home/pi/runtime', 'owner': 'pi', 'group': 'pi', 'mode': '0750'}
         - {'path': '/home/pi/runtime/log', 'owner': 'pi', 'group': 'www-data', 'mode': '0770'}
         - {'path': '/etc/apt/keyrings', 'owner': 'root', 'group': 'root', 'mode': '0755'}
+        - {'path': '/docker/prometheus/config', 'owner': 'root', 'group': 'root', 'mode': '0755'}
+        - {'path': '/docker/prometheus/data', 'owner': 'root', 'group': 'root', 'mode': '0755'}
+        - {'path': '/docker/grafana/data', 'owner': 'root', 'group': 'root', 'mode': '0755'}
+        - {'path': '/docker/grafana/conf', 'owner': 'root', 'group': 'root', 'mode': '0755'}
 
     - name: Add Docker repo GPG key
       shell:
