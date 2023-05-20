@@ -44,7 +44,7 @@ if [ $ansible -eq 1 ]
 then
   # Play, boy!
   cd $REPO_DIR/ansible
-  ansible-playbook prepare-host.yaml &>$DEST_DIR/runtime/log/ansible.log
+  ansible-playbook prepare-host.yaml &>>$DEST_DIR/runtime/log/ansible.log
 fi
 
 if [ $docker -eq 1 ]
@@ -54,7 +54,7 @@ then
   for i in *
   do
     cd $i
-    docker-compose up -d
+    docker-compose up -d &>>$DEST_DIR/runtime/log/docker-compose.log
     cd -
   done
 fi
