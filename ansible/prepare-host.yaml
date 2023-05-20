@@ -117,9 +117,6 @@
       template:
         src: "{{ item }}"
         dest: "/{{ item.split('/')[-1] | replace('#', '/') }}"
-        mode: 0640
-        owner: root
-        group: root
       with_fileglob: 'templates/*'
 
     - name: Set file permissions, where necessary
@@ -129,7 +126,7 @@
         group: "{{ item.group }}"
         mode: "{{ item.mode }}"
       loop:
-        - {'path': '/etc/uwsgi-emperor/vassals/pi.ini', 'owner': 'root', 'group': 'pi', 'mode': '0640'}
+        - {'path': '/etc/uwsgi-emperor/vassals/pi.ini', 'owner': 'root', 'group': 'root', 'mode': '0640'}
         - {'path': '/usr/local/sbin/sync.boot.sh', 'owner': 'root', 'group': 'root', 'mode': '0755'}
         - {'path': '{{ app_dir }}/.git/hooks/post-merge', 'owner': 'pi', 'group': 'pi', 'mode': '0750'}
         - {'path': '{{ app_dir }}/.git/hooks/post-merge', 'owner': 'pi', 'group': 'pi', 'mode': '0750'}
