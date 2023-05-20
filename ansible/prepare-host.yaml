@@ -33,7 +33,7 @@
         - {'path': '/etc/apt/keyrings', 'owner': 'root', 'group': 'root', 'mode': '0755'}
 
     - name: Add Docker repo GPG key
-      command:
+      shell:
         cmd: "curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg"
         creates: /etc/apt/keyrings/docker.gpg
         warn: no
