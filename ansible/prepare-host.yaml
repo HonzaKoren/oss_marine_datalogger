@@ -30,6 +30,11 @@
       loop:
         - {'path': '/home/pi/runtime', 'owner': 'pi', 'group': 'pi', 'mode': '0750'}
         - {'path': '/home/pi/runtime/log', 'owner': 'pi', 'group': 'www-data', 'mode': '0770'}
+        - {'path': '/etc/apt/keyrings', 'owner': 'root', 'group': 'root', 'mode': '0755'}
+
+    - name: Add Docker repo GPG key
+      cmd: curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+      creates: /etc/apt/keyrings/docker.gpg
 
     - name: Install required packages
       apt:
