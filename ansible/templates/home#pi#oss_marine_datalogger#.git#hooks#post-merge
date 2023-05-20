@@ -56,6 +56,7 @@ then
     cd $i
     docker-compose up -d
     cd -
+  done
 fi
 
 cd $REPO_DIR/web

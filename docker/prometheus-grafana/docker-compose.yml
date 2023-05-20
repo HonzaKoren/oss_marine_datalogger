@@ -6,7 +6,6 @@ services:
     user: "root"
     ports:
       - "9090:9090"
-    restart: always
     volumes:
       - type: bind
         source: /docker/prometheus/config/prometheus.yml
@@ -21,7 +20,6 @@ services:
     user: "root"
     ports:
       - "3000:3000"
-    restart: always
     environment:
       - GF_INSTALL_PLUGINS=ae3e-plotly-panel
       - GF_LOG_CONSOLE_LEVEL=warn
