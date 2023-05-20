@@ -33,8 +33,10 @@
         - {'path': '/etc/apt/keyrings', 'owner': 'root', 'group': 'root', 'mode': '0755'}
 
     - name: Add Docker repo GPG key
-      cmd: curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-      creates: /etc/apt/keyrings/docker.gpg
+      command:
+        cmd: "curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg"
+        creates: /etc/apt/keyrings/docker.gpg
+        warn: no
 
     - name: Install required packages
       apt:
@@ -175,7 +177,7 @@
     - name: Run GrovePi system wide setup
       shell:
         cmd: "curl -kL dexterindustries.com/update_grovepi | bash -s -- --system-wide --no-update-aptget --bypass-gui-installation"
-        warn: false
+        warn: no
       become: no
       delegate_to: localhost
 
@@ -187,6 +189,7 @@
     - name: Install Grove Python3 support libraries
       shell:
         cmd: "curl -sL https://github.com/Seeed-Studio/grove.py/raw/master/install.sh | sudo bash -s -"
+        warn: no
 
     - name: Install Python3 pip packages
       pip:
