@@ -49,7 +49,15 @@ fi
 
 if [ $docker -eq 1 ]
 then
-  # Compose
+  # Delete all containers
+  for cont in $(docker ps --format "{{.Names}}")
+  do
+    docker rm $cont
+  done
+  # Clean up
+  docker system prune -f
+
+  # Compose containers
   cd $REPO_DIR/docker
   for i in *
   do
