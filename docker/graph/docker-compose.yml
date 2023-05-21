@@ -9,10 +9,10 @@ services:
       - "9090:9090"
     volumes:
       - type: bind
-        source: /docker/prometheus/config/prometheus.yml
+        source: /home/docker/prometheus/config/prometheus.yml
         target: /etc/prometheus/prometheus.yml
       - type: bind
-        source: /docker/prometheus/data
+        source: /home/docker/prometheus/data
         target: /prometheus
 
   grafana:
@@ -27,8 +27,8 @@ services:
       - GF_LOG_CONSOLE_LEVEL=warn
     volumes:
       - type: bind
-        source: /docker/grafana/data
+        source: /home/docker/grafana/data
         target: /var/lib/grafana
       - type: bind
-        source: /docker/grafana/conf
+        source: /home/docker/grafana/conf
         target: /etc/grafana/
