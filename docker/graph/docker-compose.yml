@@ -3,6 +3,8 @@ services:
   prometheus:
     hostname: prometheus
     image: "ghcr.io/danopstech/prometheus:latest"
+    args:
+      - '--storage.tsdb.retention.time=365d'
     restart: always
     user: "root"
     ports:
