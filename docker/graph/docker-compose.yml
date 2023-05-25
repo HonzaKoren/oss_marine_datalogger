@@ -2,9 +2,11 @@ version: "3.3"
 services:
   prometheus:
     hostname: prometheus
-    image: "ghcr.io/danopstech/prometheus:latest"
+    image: "prom/prometheus:latest"
     args:
+      - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention.time=365d'
+      - '--config.file=/etc/prometheus/prometheus.yml'
     restart: always
     user: "root"
     ports:
