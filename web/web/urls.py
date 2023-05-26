@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, reverse
-from django.views.generic.base import RedirectView
+from django.views.generic.base import RedirectView, TemplateView
+
+class HomePageView(TemplateView):
+    template_name = "index.html"
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', RedirectView.as_view(pattern_name='admin:configurator_configuration_list', permanent=True)),
+    path('admin/', admin.site.urls, name='admin'),
+    path('configurator/', RedirectView.as_view(pattern_name='admin:index', permanent=True), name='configurator'),
+    path('', HomePageView.as_view(), name='home'),
+    path('metrics/', RedirectView.as_view(pattern_name='home', permanent=True), name='metrics'),
+    path('json/', RedirectView.as_view(pattern_name='home', permanent=True), name='json'),
 ]
