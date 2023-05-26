@@ -13,6 +13,7 @@
 #include <Adafruit_Sensor.h>
 #include <AS5600.h>
 #include <DHT.h>
+#include <ESP8266HTTPClient.h>
 #include <ESP8266mDNS.h>
 #include <ESP8266WebServer.h>   // Include the WebServer library
 #include <ESP8266WiFi.h>
@@ -74,9 +75,19 @@ struct BmpData;   // BMP280 data prototype
 
 struct MpuData;   // MPU6050 data prototype
 
+unsigned int now = 0;
+
+HTTPClient http;
+WiFiClient client;
+float cal_compass = 0.0;
+float cal_windvane = 0.0;
+
+// Enable platform reset
+void(* resetFunc) (void) = 0;
+
 void setup(void){
   Serial.begin(115200);         // Start the Serial communication to send messages to the computer
-  delay(10);
+  // delay(10);
   Serial.println('\n');
 
   // Set up anemometer pin
@@ -105,7 +116,7 @@ void setup(void){
   Serial.println("Connecting ...");
   int i = 0;
   while (wifiMulti.run() != WL_CONNECTED) { // Wait for the Wi-Fi to connect: scan for Wi-Fi networks, and connect to the strongest of the networks above
-    delay(250);
+    delay(50);
     Serial.print('.');
   }
   if (WiFi.SSID() == "ossml") {
@@ -155,6 +166,7 @@ void setup(void){
   mpu.calcOffsets(true,true);
   
   server.enableCORS(true);
+  server.on("/resetUnit", resetFunc);       // Perform unit reset on demand
   server.on("/data.json", handleJSON);      // Serve dynamic data as JSON
   server.on("/data.txt", handleTXT);        // Serve dynamic data as Prometheus plain text
   server.serveStatic("/", SPIFFS, "/index.html");
@@ -163,6 +175,23 @@ void setup(void){
 
   server.begin();                           // Actually start the server
   Serial.println("HTTP server started");
+
+  // Get calibration from master node
+  http.begin(client, "http://192.168.192.101/static/calibration/compass.txt");
+  int httpCode = http.GET();
+  String compass = http.getString();
+  Serial.print("Compass calibration offset ");
+  Serial.println(compass);
+  cal_compass = compass.toFloat() * PI / 180;
+  http.end();
+  http.begin(client, "http://192.168.192.101/static/calibration/windvane.txt");
+  httpCode = http.GET();
+  String windvane = http.getString();
+  Serial.print("Windvane calibration offset ");
+  Serial.println(windvane);
+  cal_windvane = windvane.toFloat();
+  http.end();
+  now = millis();
 }
 
 void loop(void){
@@ -257,7 +286,7 @@ String getDirection() {
   // Compass data
   sensors_event_t magData; 
   mag.getEvent(&magData);
-  float azimuth = atan2(magData.magnetic.y, magData.magnetic.x);
+  float azimuth = atan2(magData.magnetic.y, magData.magnetic.x) + cal_compass;
   if(azimuth < 0)
     azimuth += 2*PI;
   if(azimuth > 2*PI)
@@ -266,15 +295,17 @@ String getDirection() {
   return String(azimuthDg);  
 }
 
-void handleJSON() {
+String getWind() {
   // AS5600 wind direction
-  float apparentWind = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
-  // Acceleration
-  // Wind speed
-  // Timestamp
-  // Calibrations
-  // Battery voltage and percentage
-  // HTTP server request count
+  float apparentWind = as5600.rawAngle() * AS5600_RAW_TO_DEGREES + cal_windvane;
+  if(apparentWind < 0)
+    apparentWind += 360;
+  if(apparentWind > 360)
+    apparentWind -= 360;  
+  return String(apparentWind);
+}
+
+void handleJSON() {
   DhtData myDht = getDHT();
   BmpData myBmp = getBMP();
   MpuData myMpu = getMPU();
@@ -292,7 +323,7 @@ void handleJSON() {
   response += ", \"direction\": ";
   response += getDirection();
   response += ", \"apparent_wind\": ";
-  response += String(apparentWind);
+  response += getWind();
   response += ", \"temperature_mpu\": ";
   response += myMpu.temperature;
   response += ", \"accX\": ";
@@ -335,8 +366,6 @@ void handleTXT() {
   DhtData myDht = getDHT();  // Read DHT
   BmpData myBmp = getBMP();
   MpuData myMpu = getMPU();
-  // AS5600 wind direction
-  float apparentWind = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
   // Acceleration
   // Wind speed
   // Timestamp
@@ -349,7 +378,7 @@ void handleTXT() {
   response += "air_pressure " + myBmp.pressure+ "\n";
   response += "altitude " + myBmp.altitude + "\n";
   response += "direction " + getDirection() + "\n";
-  response += "apparent_wind " + String(apparentWind) + "\n";
+  response += "apparent_wind " + getWind() + "\n";
   response += "temperature_mpu " + myMpu.temperature + "\n";
   response += "accX " + myMpu.accX + "\n";
   response += "accY " + myMpu.accY + "\n";
