@@ -119,6 +119,19 @@
         dest: "/{{ item.split('/')[-1] | replace('#', '/') }}"
       with_fileglob: 'templates/*'
 
+    - name: Reload systemd
+      systemd:
+        daemon_reload: yes
+
+    - name: Enable and restart logger services
+      systemd:
+        name: "{{ item }}"
+        state: restarted
+        enabled: yes
+      loop:
+        - gps.service
+        - temp_humidity.service
+
     - name: Set file permissions, where necessary
       file:
         path: "{{ item.path }}"

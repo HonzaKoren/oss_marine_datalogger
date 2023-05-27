@@ -1,0 +1,13 @@
+[Unit]
+Description=GPS data logger
+After=multi-user.target
+
+[Service]
+Type=simple
+Restart=always
+WorkingDirectory=/home/pi/oss_marine_logger/collectors
+ExecStart=/usr/bin/python3 /home/pi/oss_marine_logger/collectors/gps.py
+
+[Install]
+WantedBy=multi-user.target
+
