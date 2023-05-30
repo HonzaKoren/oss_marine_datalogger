@@ -5,8 +5,8 @@ After=multi-user.target
 [Service]
 Type=simple
 Restart=always
-WorkingDirectory=/home/pi/oss_marine_logger/collectors
-ExecStart=/usr/bin/python3 /home/pi/oss_marine_logger/collectors/temp_and_humidity.py
+WorkingDirectory=/home/pi/oss_marine_datalogger/collectors
+ExecStart=/usr/bin/python3 /home/pi/oss_marine_datalogger/collectors/temp_and_humidity.py
 
 [Install]
 WantedBy=multi-user.target
