@@ -5,6 +5,8 @@ After=multi-user.target
 [Service]
 Type=simple
 Restart=always
+User=pi
+Group=pi
 WorkingDirectory=/home/pi/oss_marine_datalogger/collectors
 Environment="PATH=/home/pi/.virtualenvs/prod/bin:/usr/bin:/usr/local/bin"
 ExecStart=/home/pi/.virtualenvs/prod/bin/python3 /home/pi/oss_marine_datalogger/collectors/temp_and_humidity.py
