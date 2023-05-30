@@ -6,7 +6,7 @@ After=multi-user.target
 Type=simple
 Restart=always
 WorkingDirectory=/home/pi/oss_marine_datalogger/collectors
-ExecStart=/usr/bin/python3 /home/pi/oss_marine_datalogger/collectors/temp_and_humidity.py
+ExecStart=source /home/pi/.virtualenvs/prod/bin/activate && python3 /home/pi/oss_marine_datalogger/collectors/temp_and_humidity.py
 
 [Install]
 WantedBy=multi-user.target
