@@ -50,21 +50,21 @@
   - D11
   - D12
 
-| Use     | PIN | ::: | PIN  | Use          |
-|:---:    |:---:|:---:|:----:|:---:         |
-| ___     | TX  |     | VIN  | ___          |
-| ___     | RX  |     | GND  | All chip GND |
-| ___     | RST |     | RST  | ___          |
-| ___     | GND |     | +5V  | ___          |
-| LOC TX  | D2  |     | A7   | ___          |
-| LOC RX  | D3  |     | A6   | ___          |
-| WSER TX | D4  |     | A5   | All I2C SCL  |
-| WSER RX | D5  |     | A4   | All I2C SDA  |
-| DHT     | D6  |     | A3   | ___          |
-| ANE     | D7  |     | A2   | ___          |
-| ___     | D8  |     | A1   | ___          |
-| ___     | D9  |     | A0   | ___          |
-| ___     | D10 |     | AREF | ___          |
-| ___     | D11 |     | 3V3  | All chip VIN |
-| ___     | D12 |     | D13  | ___          |
-|         |     | USB |      |              |
+| Use     | PIN | :::<br>SD Card SPI | PIN  | Use          |
+|:---:    |:---:|:---:               |:----:|:---:         |
+| ___     | TX  |                    | VIN  | ___          |
+| ___     | RX  |                    | GND  | All chip GND |
+| ___     | RST |                    | RST  | ___          |
+| ___     | GND |                    | +5V  | ___          |
+| LOC TX  | D2  |                    | A7   | ___          |
+| LOC RX  | D3  |                    | A6   | ___          |
+| WSER TX | D4  |                    | A5   | All I2C SCL  |
+| WSER RX | D5  |                    | A4   | All I2C SDA  |
+| DHT     | D6  |                    | A3   | ___          |
+| ANE     | D7  |                    | A2   | ___          |
+| ___     | D8  |                    | A1   | ___          |
+| ___     | D9  |                    | A0   | ___          |
+| ___     | D10 |                    | AREF | ___          |
+| ___     | D11 |                    | 3V3  | All chip VIN |
+| ___     | D12 |                    | D13  | ___          |
+|         |     | USB                |      |              |
