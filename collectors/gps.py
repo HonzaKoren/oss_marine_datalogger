@@ -43,7 +43,7 @@ while 1:
         continue
     # Write TMP file
     f = open(tmp_log, "a")
-    f.write(repr(msg) + "\n")
+    f.write(f"{now} {repr(msg)}\n")
     f.close()
 
     # If history was not kept for offset seconds, move it to persitent storage

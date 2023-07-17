@@ -1,16 +1,12 @@
 #!/usr/bin/env python3
 import io
 import os
-from multiprocessing import shared_memory
+# from multiprocessing import shared_memory
 from pathlib import Path
 from shutil import move
 import time
 
 import grovepi
-
-import pynmea2
-import serial
-
 
 dht_sensor = 2
 
@@ -32,7 +28,7 @@ def init():
     grovepi.pinMode(dht_sensor, 'INPUT')
 
     # Set up shared memory segments
-    temperature = shared_memory.SharedMemory(create=True, size=10)
+    # temperature = shared_memory.SharedMemory(create=True, size=10)
 
 init()
 
@@ -45,7 +41,7 @@ while 1:
         continue
     # Write TMP file
     f = open(tmp_log, "a")
-    f.write(f'{time.time()} T={temperature} H={humidity}' + "\n")
+    f.write(f'{now} T={temperature} H={humidity}' + "\n")
     f.close()
 
     time.sleep(1)

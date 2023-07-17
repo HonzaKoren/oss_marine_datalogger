@@ -1,0 +1,16 @@
+[Unit]
+Description=GPS data logger
+After=multi-user.target
+
+[Service]
+Type=simple
+Restart=always
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/oss_marine_datalogger/collectors
+Environment="PATH=/home/pi/.virtualenvs/prod/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/home/pi/.local/bin"
+ExecStart=/home/pi/.virtualenvs/prod/bin/python3 /home/pi/oss_marine_datalogger/collectors/gps.py
+
+[Install]
+WantedBy=multi-user.target
+
