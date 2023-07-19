@@ -68,3 +68,18 @@
 | ___     | D11 |                    | 3V3  | All chip VIN |
 | ___     | D12 |                    | D13  | ___          |
 |         |     | USB                |      |              |
+
+### SPI Connector on top of Nano R3 to be used with SDCard module
+
+Taken here: http://lab.dejaworks.com/arduino-nano-sd-card-connection/
+
+When looking from top and miniUSB on left, there are 6 pins on thi right side. This is its use:
+
+|  1   |       2      |
+|:----:|:------------:|
+| GND  |    Unused    |
+| MOSI |      SCK     |
+| VCC  | MISO<br>MOSO |
+
+Sixth pin called CS is connected to digital pin.
+
